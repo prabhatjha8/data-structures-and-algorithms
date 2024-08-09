@@ -4,7 +4,7 @@ from collections import deque
 # and the adjacencyList has n items (n lists) ith corresponding
 # to ith node. The functions takes as input the source node and
 # the adjacencyList and output a dictionary containing list indicating
-# visited nodes, distance and parent
+# visited nodes, distance and parent based on BFS traversal
 
 def BFS(source, adjacencyList):
 

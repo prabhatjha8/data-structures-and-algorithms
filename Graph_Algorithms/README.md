@@ -118,3 +118,71 @@ Notes
 The graph is assumed to be undirected. For directed graphs, the adjacency list should reflect the direction of edges.
 The algorithm handles cyclic graphs and will correctly visit all nodes reachable from the source node.
 This DFS implementation provides a comprehensive view of the traversal process and is useful for various graph-related tasks and algorithms.
+
+
+
+Topological Sort Algorithm
+Overview
+Topological sorting is a fundamental algorithm used to order the vertices of a directed acyclic graph (DAG) linearly. This ordering ensures that for every directed edge 
+𝑢
+→
+𝑣
+u→v, vertex 
+𝑢
+u appears before vertex 
+𝑣
+v in the sequence. This is particularly useful in scenarios where certain tasks must be performed before others due to dependencies.
+
+Intuition Behind Topological Sort
+Imagine you are managing a project with several tasks, and some tasks can only be started after others are completed. For example, you cannot start painting a wall until it has been built. In such 
+cases, topological sorting helps you determine a valid sequence to execute all tasks. By identifying tasks with no dependencies and processing them first, you ensure that the order respects all 
+dependencies.
+
+Algorithm Explanation
+In-Degree Calculation:
+
+The algorithm starts by calculating the in-degree (number of incoming edges) for each vertex in the graph. Vertices with an in-degree of 0 have no dependencies and can be processed immediately.
+Queue Initialization:
+
+A queue is initialized with all vertices that have an in-degree of 0. These vertices are independent and can be considered the starting point.
+Processing Vertices:
+
+The algorithm then iteratively removes vertices from the queue, adds them to the topological order, and decreases the in-degree of their adjacent vertices. If an adjacent vertex’s in-degree becomes 
+0, it is added to the queue, indicating that all its dependencies have been resolved.
+Cycle Detection:
+
+If the queue is exhausted before all vertices are processed, the graph contains a cycle, and a topological sort is not possible. In this case, the algorithm returns an indication that the graph is 
+cyclic.
+Output:
+
+If all vertices are processed, the algorithm returns the vertices in topologically sorted order, ensuring that all dependencies are respected.
+Explanation of Implementation
+The implementation leverages the concepts of in-degree calculation and queue processing to achieve topological sorting:
+
+In-Degree Calculation: Each vertex's dependencies are counted by traversing the adjacency list of the graph.
+Queue Processing: Vertices with no dependencies are processed first, and as their adjacent vertices' in-degrees decrease, new vertices are added to the queue for processing.
+Cycle Detection: If there are vertices left unprocessed after the queue is empty, it indicates a cycle in the graph, making a topological sort impossible.
+The process is efficient, typically running in linear time relative to the number of vertices and edges, 
+𝑂
+(
+𝑉
++
+𝐸
+)
+O(V+E), making it suitable for large graphs.
+
+Use Cases
+Task Scheduling: In project management, tasks often have dependencies. Topological sorting helps determine the sequence in which tasks should be executed to respect these dependencies.
+
+Course Prerequisites: In academic planning, some courses require the completion of others before they can be taken. Topological sorting can be used to find a feasible order to complete the courses.
+
+Build Systems: In software development, building a project may require compiling components in a specific order due to dependencies. Topological sorting ensures that each component is built after 
+its dependencies.
+
+Dependency Resolution: In package managers or data serialization, topological sorting can be used to resolve dependencies in the correct order, ensuring that all prerequisites are handled before 
+their dependents.
+
+Conclusion
+Topological sorting is an essential algorithm for scenarios where dependency management is critical. It provides a systematic way to order tasks, courses, or components, ensuring that all 
+dependencies are satisfied before proceeding. Whether managing projects, planning academic courses, or building software, topological sorting is a versatile tool for ensuring that tasks are executed 
+in the correct sequence.
